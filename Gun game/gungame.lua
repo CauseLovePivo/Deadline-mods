@@ -16,5 +16,8 @@ end)
 
 on_player_spawned:Connect(function(name)
     local player = get_player(name)
+    if shared.weaponlevels[name] == nil then
+        shared.weaponlevels[name] = 0
+    end
 	print(`{name} spawned, gungame level :{shared.weaponlevels[name]}`)
 end)
