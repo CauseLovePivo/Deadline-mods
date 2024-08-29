@@ -12,8 +12,8 @@ function shared.UpdateWeaponFromLevel(name)
     local weaponlistData = shared.Weaponlist[level]
 
     local setup = get_setup_from_code(weaponlistData.code)
-    print(weaponlistData[0].name)
-    player.set_weapon("primary", setup.weapon, setup.data)
+    print(weaponlistData.name)
+    player.set_weapon("primary", weaponlistData.name, setup.data)
 end
 
 shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
