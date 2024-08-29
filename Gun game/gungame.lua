@@ -7,6 +7,7 @@ shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_dat
 
     if killer_data.name then
         local player = get_player(killer_data.name)
+        player.Weaponlevel += 1
         print(player.name, "weapon level is: ", player.Weaponlevel)
     end
     
@@ -16,5 +17,5 @@ end)
 on_player_spawned:Connect(function(name)
     local player = get_player(name)
     player.Weaponlevel = 0
-	print("played spawned:", name)
+	print(`{name} spawned, gungame level :{player.Weaponlevel}`)
 end)
