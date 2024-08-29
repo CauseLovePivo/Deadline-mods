@@ -1,6 +1,6 @@
 print("gungame, ver:0.1")
 require("Gun%20game/EventsHandler.lua")
-shared.OnPlayerDiedConnection:Disconnect()
+--shared.OnPlayerDiedConnection:Disconnect()
 shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
     print("-----------------")
 	print(name, "died to", killer_data.type, "by", killer_data.name)
