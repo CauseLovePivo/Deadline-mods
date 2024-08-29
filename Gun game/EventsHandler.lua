@@ -1,6 +1,5 @@
 shared.EventsTable = {
     kill_player = function(player)
-        player.set_health(math.huge)
         player.explode()
     end
 }
