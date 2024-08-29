@@ -6,8 +6,7 @@ shared.weaponlevels = {}
 
 
 function shared.UpdateWeaponFromLevel(name)
-
-
+    print("hello")
     local player = get_player(name)
     local level = shared.weaponlevels[name]
     local weaponlistData = shared.Weaponlist[level]
@@ -30,7 +29,7 @@ end)
 on_player_spawned:Connect(function(name)
     local player = get_player(name)
     if shared.weaponlevels[name] == nil then
-        shared.weaponlevels[name] = 0
+        shared.weaponlevels[name] = 1
     end
 	print(`{name} spawned, gungame level :{shared.weaponlevels[name]}`)
 end)
