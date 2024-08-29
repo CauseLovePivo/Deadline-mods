@@ -20,7 +20,7 @@ function shared.UpdateWeaponFromLevel(name)
 end
 
 
-function shared.EndMatch(winner) -- basically blackshibe's gamemode_setup.lua
+function shared.EndMatch(winner)
     chat.send_announcement(`{winner} won! 20s Intermission between matches...`)  
     sharedvars.sv_spawning_enabled = false
     set_spawning_disabled_reason("Intermission between matches")
@@ -33,14 +33,7 @@ function shared.EndMatch(winner) -- basically blackshibe's gamemode_setup.lua
 
     table.clear(shared.weaponlevels)
 
-    if sharedvars.sv_map_voting then
-        local voted_map = map.run_vote()
-        map.set_map_from_config(map_config[voted_map])
-
-    else
-        map.set_map('template_map')
-    end
-    gamemode.force_set_gamemode("none") -- sets the gamemode without changing the map(?)
+    map.set_map('template_map')
     sharedvars.sv_spawning_enabled = true
     set_spawning_disabled_reason("")
 end
