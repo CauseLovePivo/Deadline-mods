@@ -40,7 +40,7 @@ function shared.EndMatch(winner) -- basically blackshibe's gamemode_setup.lua
     else
         map.set_map('template_map')
     end
-    gamemode.force_set_gamemode("NONE") -- sets the gamemode without changing the map(?)
+    gamemode.force_set_gamemode("none") -- sets the gamemode without changing the map(?)
     sharedvars.sv_spawning_enabled = true
     set_spawning_disabled_reason("")
 end
@@ -49,10 +49,11 @@ local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data
     print("-----------------")
 	print(name, "died to", killer_data.type, "by", killer_data.name)  -- can be burning, drowning, firearm, grenade, map_reset, other, reset
     if shared.weaponlevels[killer_data.name] + 1 > MAX_LEVEL then
+        shared.EndMatch(killer_data.name)
+        return
+    else
         shared.weaponlevels[killer_data.name] += 1
         shared.UpdateWeaponFromLevel(killer_data.name)
-    else
-        shared.EndMatch(killer_data.name)
     end
 
     print("-----------------")
