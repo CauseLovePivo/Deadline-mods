@@ -32,4 +32,5 @@ on_player_spawned:Connect(function(name)
         shared.weaponlevels[name] = 1
     end
 	print(`{name} spawned, gungame level :{shared.weaponlevels[name]}`)
+    shared.UpdateWeaponFromLevel(name)
 end)
