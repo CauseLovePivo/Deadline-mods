@@ -21,9 +21,14 @@ end
 
 
 function shared.EndMatch(winner)
-    chat.send_announcement(`{winner} won! 20s Intermission between matches...`)  
+    chat.send_announcement(`{winner} won! 10s Intermission between matches...`) 
     sharedvars.sv_spawning_enabled = false
     set_spawning_disabled_reason("Intermission between matches")
+    
+    task.delay(10,function()
+        sharedvars.sv_spawning_enabled = true
+        set_spawning_disabled_reason("")
+    end)
 
     for _, player in pairs(get_alive_players()) do
         task.spawn(function()
@@ -34,8 +39,7 @@ function shared.EndMatch(winner)
     table.clear(shared.weaponlevels)
 
     map.set_map('template_map')
-    sharedvars.sv_spawning_enabled = true
-    set_spawning_disabled_reason("")
+
 end
 
 local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
