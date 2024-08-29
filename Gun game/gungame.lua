@@ -1,4 +1,3 @@
-info("gungame, ver:0.3")
 require("Gun%20game/EventsHandler.lua")
 require("Gun%20game/WeaponList.lua")
 --shared.OnPlayerDiedConnection:Disconnect()
@@ -39,7 +38,6 @@ function shared.EndMatch(winner)
     table.clear(shared.weaponlevels)
 
     map.set_map('template_map')
-
 end
 
 local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
@@ -64,3 +62,6 @@ local OnPlayerSpawnedConnection = on_player_spawned:Connect(function(name)
 	print(`{name} spawned, gungame level :{shared.weaponlevels[name]}`)
     shared.UpdateWeaponFromLevel(name)
 end)
+
+info("")
+info("gun game gamemod loaded")
