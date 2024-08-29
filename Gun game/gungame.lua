@@ -5,7 +5,7 @@ shared.weaponlevels = {}
 
 local map_config = config.maps.MAP_CONFIGURATION
 
-local MAX_LEVEL = 2
+local MAX_LEVEL = #shared.Weaponlist
 
 function shared.UpdateWeaponFromLevel(name)
     local player = get_player(name)
@@ -27,7 +27,7 @@ function shared.EndMatch(winner)
     task.delay(10,function()
         sharedvars.sv_spawning_enabled = true
         set_spawning_disabled_reason("")
-    end)
+    end)``
 
     for _, player in pairs(get_alive_players()) do
         task.spawn(function()
