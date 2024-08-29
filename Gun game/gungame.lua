@@ -1,11 +1,19 @@
 require("Gun%20game/EventsHandler.lua")
+shared.OnPlayerDiedConnection:Disconnect()
+shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
+    print("-----------------")
+	print(name, "died to", killer_data.type, "by", killer_data.name)
 
-shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted)
-	-- mostly same data the game uses
-    print("-----------------")
-	print(name, "died to", killer_data.typ, "by", killer_data.name) -- can be burning, drowning, firearm, grenade, map_reset, other, reset
-        for i,v in killer_data do
-            print(i," :",v)
-        end
-    print("-----------------")
+    if killer_data.name then
+        local player = get_player(killer_data.name)
+        print(player.name, "weapon level is: ", player.Weaponlevel)
+    end
+    
+    -- can be burning, drowning, firearm, grenade, map_reset, other, reset
+end)
+
+onon_player_spawned:Connect(function(name)
+    local player = get_player(name)
+    player.Weaponlevel = 0
+	print("played spawned:", name)
 end)
