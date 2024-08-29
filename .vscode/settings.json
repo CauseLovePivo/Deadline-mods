@@ -1,0 +1,8 @@
+{
+    "robloxLsp.diagnostics.globals": [
+        "on_player_died"
+    ],
+    "robloxLsp.diagnostics.disable": [
+        "undefined-global"
+    ]
+}
