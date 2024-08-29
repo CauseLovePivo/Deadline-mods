@@ -7,6 +7,7 @@ shared.weaponlevels = {}
 local map_config = config.maps.MAP_CONFIGURATION
 
 local MAX_LEVEL = #shared.Weaponlist
+print(MAX_LEVEL)
 
 function shared.UpdateWeaponFromLevel(name)
     local player = get_player(name)
