@@ -46,7 +46,7 @@ end
 
 local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
     print("-----------------")
-	print(name, "died to", killer_data.type, "by", killer_data.name) 
+	print(name, "died to", killer_data.type, "by", killer_data.name)  -- can be burning, drowning, firearm, grenade, map_reset, other, reset
     if shared.weaponlevels[killer_data.name] + 1 <= MAX_LEVEL then
         shared.weaponlevels[killer_data.name] += 1
         shared.UpdateWeaponFromLevel(killer_data.name)
@@ -54,7 +54,6 @@ local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data
         shared.EndMatch(killer_data.name)
     end
 
-    -- can be burning, drowning, firearm, grenade, map_reset, other, reset
     print("-----------------")
 end)
 
