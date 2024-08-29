@@ -27,7 +27,7 @@ function shared.EndMatch(winner)
     task.delay(10,function()
         sharedvars.sv_spawning_enabled = true
         set_spawning_disabled_reason("")
-    end)``
+    end)
 
     for _, player in pairs(get_alive_players()) do
         task.spawn(function()
