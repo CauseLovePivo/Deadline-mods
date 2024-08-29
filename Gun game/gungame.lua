@@ -12,7 +12,7 @@ shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_dat
     -- can be burning, drowning, firearm, grenade, map_reset, other, reset
 end)
 
-onon_player_spawned:Connect(function(name)
+on_player_spawned:Connect(function(name)
     local player = get_player(name)
     player.Weaponlevel = 0
 	print("played spawned:", name)
