@@ -1,6 +1,7 @@
 shared.EventsTable = {
     respawn = function(player)
         player.explode()
+        player.spawn()
     end;
     get_my_stats = function(player)
         for i,v in player do
