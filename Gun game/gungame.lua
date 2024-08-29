@@ -6,7 +6,7 @@ shared.weaponlevels = {}
 
 local map_config = config.maps.MAP_CONFIGURATION
 
-local MAX_LEVEL = #shared.Weaponlist + 1
+local MAX_LEVEL = 2
 
 function shared.UpdateWeaponFromLevel(name)
     local player = get_player(name)
@@ -36,10 +36,11 @@ function shared.EndMatch(winner) -- basically blackshibe's gamemode_setup.lua
     if sharedvars.sv_map_voting then
         local voted_map = map.run_vote()
         map.set_map_from_config(map_config[voted_map])
+
     else
         map.set_map('template_map')
     end
-
+    gamemode.force_set_gamemode("NONE") -- sets the gamemode without changing the map(?)
     sharedvars.sv_spawning_enabled = true
     set_spawning_disabled_reason("")
 end
@@ -47,7 +48,7 @@ end
 local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
     print("-----------------")
 	print(name, "died to", killer_data.type, "by", killer_data.name)  -- can be burning, drowning, firearm, grenade, map_reset, other, reset
-    if shared.weaponlevels[killer_data.name] + 1 <= MAX_LEVEL then
+    if shared.weaponlevels[killer_data.name] + 1 > MAX_LEVEL then
         shared.weaponlevels[killer_data.name] += 1
         shared.UpdateWeaponFromLevel(killer_data.name)
     else
