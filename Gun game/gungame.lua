@@ -7,7 +7,7 @@ shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_dat
 
         local player = get_player(killer_data.name)
         player.Weaponlevel += 1
-        print(player.name, "weapon level is: ", player.Weaponlevel)
+        print(name, "weapon level is: ", player.Weaponlevel)
     
     -- can be burning, drowning, firearm, grenade, map_reset, other, reset
 end)
