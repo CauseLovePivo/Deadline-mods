@@ -6,8 +6,7 @@ shared.weaponlevels = {}
 
 local map_config = config.maps.MAP_CONFIGURATION
 
-local MAX_LEVEL = #shared.Weaponlist
-print(MAX_LEVEL)
+local MAX_LEVEL = #shared.Weaponlist + 1
 
 function shared.UpdateWeaponFromLevel(name)
     local player = get_player(name)
@@ -38,17 +37,17 @@ function shared.EndMatch(winner) -- basically blackshibe's gamemode_setup.lua
         local voted_map = map.run_vote()
         map.set_map_from_config(map_config[voted_map])
     else
-        map.set_map_from_config(random_value_in_map(map_config))
+        map.set_map('template_map')
     end
 
     sharedvars.sv_spawning_enabled = true
     set_spawning_disabled_reason("")
 end
 
-shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
+local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
     print("-----------------")
 	print(name, "died to", killer_data.type, "by", killer_data.name) 
-    if shared.weaponlevels[killer_data.name] + 1 < MAX_LEVEL then
+    if shared.weaponlevels[killer_data.name] + 1 <= MAX_LEVEL then
         shared.weaponlevels[killer_data.name] += 1
         shared.UpdateWeaponFromLevel(killer_data.name)
     else
@@ -59,7 +58,7 @@ shared.OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_dat
     print("-----------------")
 end)
 
-on_player_spawned:Connect(function(name)
+local OnPlayerSpawnedConnection = on_player_spawned:Connect(function(name)
     local player = get_player(name)
     if shared.weaponlevels[name] == nil then
         shared.weaponlevels[name] = 1
