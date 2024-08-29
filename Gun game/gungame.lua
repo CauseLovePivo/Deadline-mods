@@ -1,4 +1,4 @@
-print("gungame, ver:0.1")
+info("gungame, ver:0.1")
 require("Gun%20game/EventsHandler.lua")
 require("Gun%20game/WeaponList.lua")
 --shared.OnPlayerDiedConnection:Disconnect()
