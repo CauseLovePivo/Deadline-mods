@@ -14,6 +14,8 @@ end)
 
 on_player_spawned:Connect(function(name)
     local player = get_player(name)
-    player.Weaponlevel = 0
+    if not player.Weaponlevel then
+        player.Weaponlevel = 0
+    end
 	print(`{name} spawned, gungame level :{player.Weaponlevel}`)
 end)
