@@ -46,21 +46,15 @@ function shared.EndMatch(winner)
     --     set_spawning_disabled_reason("")
     -- end)
 
-    if sharedvars.sv_map_voting then
-        local voted_map = map.run_vote()
-        voted_map.gamemode = "NONE"
-        map.set_map_from_config(map_config[voted_map])
-    else
-        local randomMapConfig = random_value_in_map(map_config)
-        randomMapConfig.gamemode = "NONE"
-        map.set_map_from_config(random_value_in_map(map_config))
-    end
-
     for _, player in pairs(get_alive_players()) do
         task.spawn(function()
             player.explode()
         end)
     end
+
+    local randomMapConfig = random_value_in_map(map_config)
+    randomMapConfig.gamemode = "NONE"
+    map.set_map_from_config(randomMapConfig)
 
     map.set_map_from_config(is_studio() and studio_config() or random_value_in_map(map_config))
 	gamemode.gamemode_finished:Connect(function(avoid_resetting_map)
