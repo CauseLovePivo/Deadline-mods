@@ -1,6 +1,6 @@
 shared.EventsTable = {
     respawn = function(player)
-        player.explode()
+        player.kill()
         player.spawn()
     end;
     get_my_stats = function(player)
@@ -25,7 +25,9 @@ on_client_event:Connect(function(plrname, args)
     end
 
     table.remove(args,1)
-    print(args)
+    for i, value in args do
+        print(`{i} {v}`)
+    end
 
     shared.EventsTable[event](player)
 end)
