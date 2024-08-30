@@ -37,7 +37,7 @@ function shared.EndMatch(winner)
 
     table.clear(shared.weaponlevels)
 
-    map.set_map('template_map')
+--    map.set_map('template_map')
 end
 
 local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data, stats_counted) 	-- mostly same data the game uses
@@ -64,4 +64,4 @@ local OnPlayerSpawnedConnection = on_player_spawned:Connect(function(name)
 end)
 
 info("")
-info("gun game gamemod loaded")
+info("testin")
