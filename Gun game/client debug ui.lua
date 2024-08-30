@@ -8,5 +8,9 @@ iris:Connect(function()
 			fire_server("get_my_stats")
 		end
 
+		if iris.Button({"restart gun game"}).clicked() then
+			fire_server("gungame_restart")
+		end
+
 	iris.End()
 end)

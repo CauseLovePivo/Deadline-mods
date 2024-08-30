@@ -20,7 +20,12 @@ end
 
 
 function shared.EndMatch(winner)
-    chat.send_announcement(`{winner} won! 10s Intermission between matches...`) 
+    if winner then
+        chat.send_announcement(`{winner} won! 10s Intermission between matches...`) 
+    else
+        chat.send_announcement(`restarting in 10s...`) 
+    end
+
     sharedvars.sv_spawning_enabled = false
     set_spawning_disabled_reason("Intermission between matches")
     
