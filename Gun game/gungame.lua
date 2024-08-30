@@ -41,22 +41,22 @@ function shared.EndMatch(winner)
     sharedvars.sv_spawning_enabled = false
     set_spawning_disabled_reason("Intermission between matches")
     
-    -- task.delay(10,function()
-    --     sharedvars.sv_spawning_enabled = true
-    --     set_spawning_disabled_reason("")
-    -- end)
+    task.delay(10,function()
+        sharedvars.sv_spawning_enabled = true
+        set_spawning_disabled_reason("")
+    end)
 
     for _, player in pairs(get_alive_players()) do
         task.spawn(function()
             player.explode()
         end)
     end
-
+    chat.send_announcement(`selecting random map...`) 
     local randomMapConfig = random_value_in_map(map_config)
     randomMapConfig.gamemode = "NONE"
     map.set_map_from_config(randomMapConfig)
 
-    sharedvars.sv_spawning_enabled = true
+   -- sharedvars.sv_spawning_enabled = true
 
     table.clear(shared.weaponlevels)
 
