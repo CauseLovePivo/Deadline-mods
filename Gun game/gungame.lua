@@ -56,27 +56,7 @@ function shared.EndMatch(winner)
     randomMapConfig.gamemode = "NONE"
     map.set_map_from_config(randomMapConfig)
 
-    map.set_map_from_config(is_studio() and studio_config() or random_value_in_map(map_config))
-	gamemode.gamemode_finished:Connect(function(avoid_resetting_map)
-		if avoid_resetting_map then
-			return
-		end
-
-		chat.send_announcement("20s Intermission between matches...")
-
-		sharedvars.sv_spawning_enabled = false
-		set_spawning_disabled_reason("Intermission between matches")
-
-		if sharedvars.sv_map_voting then
-			local voted_map = map.run_vote()
-			map.set_map_from_config(map_config[voted_map])
-		else
-			map.set_map_from_config(random_value_in_map(map_config))
-		end
-
-		sharedvars.sv_spawning_enabled = true
-		set_spawning_disabled_reason("")
-	end)
+    sharedvars.sv_spawning_enabled = true
 
     table.clear(shared.weaponlevels)
 
