@@ -24,7 +24,7 @@ shared.Weaponlist = {
         code = "w99a-02212-7ewd-2nmz-dc2o-zh7w-785g-z2hm";
     };
     {
-        name == "AKMN"; -- 7
+        name = "AKMN"; -- 7
         code = "qgc4-02212-7z54-mn23-qee1-hofm-f11n-og5a";
     };
     {
