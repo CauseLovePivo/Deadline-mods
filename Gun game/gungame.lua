@@ -95,4 +95,4 @@ local OnPlayerSpawnedConnection = on_player_spawned:Connect(function(name)
 end)
 
 info("")
-info("testin1")
+info("main")
