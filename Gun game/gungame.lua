@@ -28,7 +28,7 @@ function shared.UpdateWeaponFromLevel(name)
 
     local setup = get_setup_from_code(weaponlistData.code)
     player.set_weapon("primary", weaponlistData.name, setup.data)
-    player.equip_weapon("primary",true)
+    player.equip_weapon("primary")
     player.refill_ammo()
 end     
 
@@ -93,4 +93,4 @@ local OnPlayerSpawnedConnection = on_player_spawned:Connect(function(name)
 end)
 
 info("")
-info("testin")
+info("testin1")
