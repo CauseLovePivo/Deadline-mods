@@ -19,7 +19,7 @@ local function random_value_in_map(map)
 end
 
 
-function shared.UpdateWeaponFromLevel(name)
+function shared.UpdateWeaponFromLevel(name,onspawn)
     local player = get_player(name)
     local level = shared.weaponlevels[name]
     local weaponlistData = shared.Weaponlist[level]
@@ -28,8 +28,10 @@ function shared.UpdateWeaponFromLevel(name)
 
     local setup = get_setup_from_code(weaponlistData.code)
     player.set_weapon("primary", weaponlistData.name, setup.data)
-    player.equip_weapon("primary")
     player.refill_ammo()
+    if not onspawn then
+        player.equip_weapon("primary",true)
+    end
 end     
 
 function shared.EndMatch(winner)
@@ -77,7 +79,7 @@ local OnPlayerDiedConnection = on_player_died:Connect(function(name, killer_data
         return
     else
         shared.weaponlevels[killer_data.name] += 1
-        shared.UpdateWeaponFromLevel(killer_data.name)
+        shared.UpdateWeaponFromLevel(killer_data.name,false)
     end
 
     print("-----------------")
@@ -89,7 +91,7 @@ local OnPlayerSpawnedConnection = on_player_spawned:Connect(function(name)
         shared.weaponlevels[name] = 1
     end
 	print(`{name} spawned, gungame level :{shared.weaponlevels[name]}`)
-    shared.UpdateWeaponFromLevel(name)
+    shared.UpdateWeaponFromLevel(name,true)
 end)
 
 info("")
