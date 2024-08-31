@@ -30,7 +30,7 @@ function shared.UpdateWeaponFromLevel(name,onspawn)
     player.set_weapon("primary", weaponlistData.name, setup.data)
     player.refill_ammo()
     if not onspawn then
-        player.equip_weapon("primary",true)
+        player.equip_weapon("primary")
     end
 end     
 
