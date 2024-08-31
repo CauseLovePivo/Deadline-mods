@@ -28,6 +28,7 @@ function shared.UpdateWeaponFromLevel(name)
 
     local setup = get_setup_from_code(weaponlistData.code)
     player.set_weapon("primary", weaponlistData.name, setup.data)
+    player.equip_weapon("primary",true)
     player.refill_ammo()
 end     
 
